@@ -6,22 +6,18 @@ import {usersRepository} from '../repositories/users-repository'
 
 
 export const usersService = {
-    async createUser(login: string, email: string, password: string): Promise<UserDBType> {
 
-        const passwordSalt = await bcrypt.genSalt(10)
-        const passwordHash = await this._generateHash(password, passwordSalt)
+    
 
-        const newUser: UserDBType = {
-            _id: new ObjectId,
-            login,
-            email,
-            passwordHash,
-            passwordSalt,
-            
-        }
-          return usersRepository.createUser(newUser)
+    async createUser(login: string, email: string, password: string): Promise<UserDBType>
+    {
+                const passwordSalt = "random1"
+        const passwordHash = "random2"
+       let user = {_id: new ObjectId(), login, email, passwordHash, passwordSalt}
+       return usersRepository.createUser(user)
+   },
 
-    },
+
     async findUserById(id: ObjectId): Promise<UserDBType | null> {
         return usersRepository.findUserById(id)
     },

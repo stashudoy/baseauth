@@ -15,10 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const db_1 = require("./repositories/db");
 const user_router_1 = require("./routes/user-router");
+const body_parser_1 = __importDefault(require("body-parser"));
 const app = (0, express_1.default)();
-app.use(express_1.default.json());
+app.use(body_parser_1.default.json());
 const port = process.env.PORT || 9000;
-//app.use('/users', usersRouter)
 app.use('/users', user_router_1.usersRouter);
 const startApp = () => __awaiter(void 0, void 0, void 0, function* () {
     yield db_1.runDB;

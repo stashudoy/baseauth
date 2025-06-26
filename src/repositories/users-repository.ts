@@ -7,10 +7,11 @@ export const usersRepository = {
             .find()
             .toArray()
     },
-    async createUser(user: UserDBType): Promise<UserDBType | any> {
-        const result = await usersCollection.insertOne(user)
-        return user
+    async createUser(user: UserDBType): Promise<UserDBType | any>{
+        let result =  await  usersCollection.insertOne(user) 
+        return result
     },
+
     async findUserById(id: Object): Promise<UserDBType | null> {
         let product = await usersCollection.findOne({_id: id})
         if(product) {

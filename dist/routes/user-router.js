@@ -14,8 +14,9 @@ const express_1 = require("express");
 const users_service_1 = require("../app/users-service");
 exports.usersRouter = (0, express_1.Router)({});
 exports.usersRouter.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const newProduct = yield users_service_1.usersService.createUser(req.body.login, req.body.email, req.body.password);
-    res.status(201).send(newProduct);
+    const newUser = yield users_service_1.usersService.createUser(req.body.login, req.body.email, req.body.password);
+    console.log(req.body.login);
+    res.status(201).send(newUser);
 }));
 exports.usersRouter.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield users_service_1.usersService.findUsers();

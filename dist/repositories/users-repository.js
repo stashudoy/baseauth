@@ -21,8 +21,8 @@ exports.usersRepository = {
     },
     createUser(user) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield db_1.usersCollection.insertOne(user);
-            return user;
+            let result = yield db_1.usersCollection.insertOne(user);
+            return result;
         });
     },
     findUserById(id) {

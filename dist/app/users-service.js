@@ -19,16 +19,10 @@ const users_repository_1 = require("../repositories/users-repository");
 exports.usersService = {
     createUser(login, email, password) {
         return __awaiter(this, void 0, void 0, function* () {
-            const passwordSalt = yield bcrypt_1.default.genSalt(10);
-            const passwordHash = yield this._generateHash(password, passwordSalt);
-            const newUser = {
-                _id: new mongodb_1.ObjectId,
-                login,
-                email,
-                passwordHash,
-                passwordSalt,
-            };
-            return users_repository_1.usersRepository.createUser(newUser);
+            const passwordSalt = "random1";
+            const passwordHash = "random2";
+            let user = { _id: new mongodb_1.ObjectId(), login, email, passwordHash, passwordSalt };
+            return users_repository_1.usersRepository.createUser(user);
         });
     },
     findUserById(id) {
