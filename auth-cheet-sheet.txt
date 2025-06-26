@@ -1,0 +1,22 @@
+yarn add mongoose // для легкой работы c mongodb, т.к. называемый ODM, аналог ORM, для работы с доками в БД типа
+
+
+
+Подключаем nodejs к БД cloud.mongo 
+====================================
+https://cloud.mongodb.com/v2/675d67293a62c569cbf3d07e#/clusters/connect?clusterId=Cluster0
+
+Заходим в свой аккаунт mongodb и запускаем кластер (Project 0 это и есть название БД) => кликаем connect => 
+
+копируем url: 
+
+
+
+
+tester/akhfd758GJG   # set: "access allow from anywhere" (https://cloud.mongodb.com/v2/685d23a09e2687429033289c#/security/network/accessList)
+
+
+mongodb+srv://tester:<db_password>@cluster0.jtpt89n.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+
+mongodb+srv://tester:akhfd758GJG@cluster0.jtpt89n.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
