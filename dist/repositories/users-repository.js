@@ -21,25 +21,26 @@ exports.usersRepository = {
     },
     createUser(user) {
         return __awaiter(this, void 0, void 0, function* () {
-            let result = yield db_1.usersCollection.insertOne(user);
-            return result;
-        });
-    },
-    findUserById(id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let product = yield db_1.usersCollection.findOne({ _id: id });
-            if (product) {
-                return product;
-            }
-            else {
-                return null;
-            }
-        });
-    },
-    findByLoginOrEmail(loginOrEmail) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const user = yield db_1.usersCollection.findOne({ $or: [{ email: loginOrEmail }, { userName: loginOrEmail }] });
+            const result = db_1.usersCollection.insertOne(user);
             return user;
         });
-    }
+    },
+    findByLogin(login) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield db_1.usersCollection.findOne({ login: login }); // findOne({$or: [{email: loginOrEmail}, {login: loginOrEmail},  ]})
+            return user;
+        });
+    },
+    // async findUserById(id: Object): Promise<UserDBType | null> {
+    //     let product = await usersCollection.findOne({_id: id})
+    //     if(product) {
+    //         return product
+    //     } else {
+    //         return null
+    //     }
+    // },     
+    // async findByLoginOrEmail(loginOrEmail: string) {
+    //     const user = await usersCollection.findOne({ $or: [{email: loginOrEmail}, {userName: loginOrEmail}]})
+    //     return user
+    // },
 };

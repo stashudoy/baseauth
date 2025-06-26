@@ -1,6 +1,6 @@
 
+import {WithId} from 'mongodb'
 
-import {ObjectId, WithId} from 'mongodb'
 
 export type UserDBType = WithId<{
     

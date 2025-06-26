@@ -20,7 +20,6 @@ function runDB() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             yield client.connect();
-            yield client.db("authtest").command({ ping: 1 });
             console.log("Connection successfully to mongo server");
         }
         catch (error) {

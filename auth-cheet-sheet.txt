@@ -20,3 +20,13 @@ mongodb+srv://tester:<db_password>@cluster0.jtpt89n.mongodb.net/?retryWrites=tru
 
 
 mongodb+srv://tester:akhfd758GJG@cluster0.jtpt89n.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+
+
+
+
+
+
+================
+
+https://metanit.com/nosql/mongodb/2.9.php

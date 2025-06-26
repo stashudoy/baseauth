@@ -9,15 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.usersRouter = void 0;
-const express_1 = require("express");
+exports.authRouter = void 0;
 const users_service_1 = require("../app/users-service");
-exports.usersRouter = (0, express_1.Router)({});
-exports.usersRouter.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const newUser = yield users_service_1.usersService.createUser(req.body.login, req.body.email, req.body.password);
-    res.status(201).send(newUser);
-}));
-exports.usersRouter.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield users_service_1.usersService.findUsers();
-    res.json(result);
+const express_1 = require("express");
+exports.authRouter = (0, express_1.Router)({});
+exports.authRouter.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const checkResult = yield users_service_1.usersService.checkCredentials(req.body.login, req.body.password);
+    if (checkResult) {
+        res.status(201).send("Good");
+    }
+    else {
+        res.status(201).send("Oшибка авторизации");
+    }
 }));

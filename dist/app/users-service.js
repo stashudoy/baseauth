@@ -19,20 +19,18 @@ const users_repository_1 = require("../repositories/users-repository");
 exports.usersService = {
     createUser(login, email, password) {
         return __awaiter(this, void 0, void 0, function* () {
-            const passwordSalt = "random1";
-            const passwordHash = "random2";
-            let user = { _id: new mongodb_1.ObjectId(), login, email, passwordHash, passwordSalt };
+            const passwordSalt = yield bcrypt_1.default.genSalt(10);
+            const passwordHash = yield this._generateHash(password, passwordSalt);
+            let user = ({ _id: new mongodb_1.ObjectId(), login, email, passwordHash, passwordSalt });
             return users_repository_1.usersRepository.createUser(user);
         });
     },
-    findUserById(id) {
+    // async findUserById(id: ObjectId): Promise<UserDBType | null> {
+    //     return usersRepository.findUserById(id)
+    // },
+    checkCredentials(login, password) {
         return __awaiter(this, void 0, void 0, function* () {
-            return users_repository_1.usersRepository.findUserById(id);
-        });
-    },
-    checkCredentials(loginOrEmail, password) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const user = yield users_repository_1.usersRepository.findByLoginOrEmail(loginOrEmail);
+            const user = yield users_repository_1.usersRepository.findByLogin(login);
             if (!user)
                 return false;
             const passwordHash = yield this._generateHash(password, user.passwordSalt);
@@ -42,16 +40,15 @@ exports.usersService = {
             return true;
         });
     },
-    _generateHash(password, salt) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const hash = yield bcrypt_1.default.hash(password, salt);
-            console.log('hash' + hash);
-            return hash;
-        });
-    },
     findUsers() {
         return __awaiter(this, void 0, void 0, function* () {
             return users_repository_1.usersRepository.getAllUsers();
+        });
+    },
+    _generateHash(password, salt) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const hash = yield bcrypt_1.default.hash(password, salt);
+            return hash;
         });
     }
 };

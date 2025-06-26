@@ -13,7 +13,7 @@ export const usersCollection = db.collection<UserDBType>('users')
 export async function runDB() {
     try {
         await client.connect()
-        await client.db("authtest").command({ping: 1})
+      
         console.log("Connection successfully to mongo server")        
     } catch (error) {
         console.log("Can't connect to db")

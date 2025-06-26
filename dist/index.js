@@ -14,12 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const db_1 = require("./repositories/db");
+const auth_router_1 = require("./routes/auth-router");
 const user_router_1 = require("./routes/user-router");
-const body_parser_1 = __importDefault(require("body-parser"));
 const app = (0, express_1.default)();
-app.use(body_parser_1.default.json());
+app.use(express_1.default.json());
 const port = process.env.PORT || 9000;
-app.use('/users', user_router_1.usersRouter);
+app.use('/registration', user_router_1.usersRouter);
+app.use('/login', auth_router_1.authRouter);
 const startApp = () => __awaiter(void 0, void 0, void 0, function* () {
     yield db_1.runDB;
     app.listen(port, () => {
